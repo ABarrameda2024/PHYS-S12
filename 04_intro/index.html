@@ -12,13 +12,86 @@
 
 
 
-  ### Week 4: W.I.P
+  ### Week 4: Microcontroller Programing
+<br>
+  <p style="color:rgb(48, 48,  255)"><font size="+2">For this week's assignment, I decided to program a button, using Arduino, with my device from assignment #3. I started with an idea: what if I use the button circuit which turns on an LED (from the Arduino basics lab), but I swapped the LED with the cables that powered my motor? My first step was to use the Arduino digital button example, and my code is imbedded here: </font></p>
+  <pre><code>
+    // constants won't change. They're used here to set pin numbers:
+const int buttonPin = 2;     // the number of the pushbutton pin
+const int ledPin =  13;      // the number of the LED pin
 
-  Here is an image: 
+// variables will change:
+int buttonState = 0;         // variable for reading the pushbutton status
 
-  ![image of embroidery](./sew.png)
+void setup() {
+  // initialize the LED pin as an output:
+  pinMode(ledPin, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT_PULLUP);
+}
 
-  And here is a	[link](../index.html).
+void loop() {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(buttonPin);
+
+  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
+  if (buttonState == LOW) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
+  }
+}
+</pre></code>
+
+<br>
+  <p style="color:rgb(48, 48, 255)"><font size="+2"></font>As shown in the code, I changed Arduino's original code from <code>pinMode(buttonPin, INPUT);</code> to <code>pinMode(buttonPin, INPUT_PULLUP);</code> (in order to use the Arduino's pullup resistor rather than a resistor on my breadboard), and I also made sure that the buttonState was set to LOW instead of HIGH, reversing the function of the button. After setting up my circuit using the breadboard and the motor, my creation worked in a more practical sense, as it would now dispense paper towels only when pressed rather than constantly. Here is an image and a video of it working, as well as my circuit of the project! (My circuit-drawing is incredibly low quality, so please excuse the simple drawing of a most-likely complex circuit.)</p> 
+  <br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./img1.jpg" width="400" height="242" alt="image13" class="center">
+<br>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./img2.jpg" width="400" height="242" alt="image13" class="center">
+<br>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./img3.jpg" width="400" height="242" alt="image13" class="center">
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<center>
+<video width="400" height="242" controls>
+  <source src="./vid1.mp4" width="400" height="242" alt="papertowelmachinebutton" class="center" type="video/mp4">
+</center>
+  <p style="color:black">Return to Main Page <b>[here](../index.html)<b></p> 
+<br>
 
 
 
