@@ -12,13 +12,219 @@
 
 
 
-  ### Week 6: W.I.P
+  ### Week 6: Electronic Input Devices
 
-  Here is an image: 
+<br>
+  <p style="color:rgb(48, 48,  255)"><font size="+2">For the sixth assignment, we were tasked with creating an electronic input device using a kit, measuring a physical quantity with that input device, and doing the same with an input device that we made ourselves. For the first half of this assignment (kit), I was unable to finish my input device in the time given in my M-W lab section. My main issue, which I have now reflected on, was my soldering skills when I was working on the assignment. Despite my lack of a working input device (accelerometer in this case), I still have documentation of my process. First, I used the Adafruit LIS3DH as my accelerometer of choice. After following the guide at https://learn.adafruit.com/adafruit-lis3dh-triple-axis-accelerometer-breakout/arduino, I wired up my accelerometer to my breadboard using the SPI wiring option. However, I noticed that the LED blinked rapidly and that the connection was very unstable. Here is my first version of my wired accelerometer:</font></p>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg1.jpg" width="400" height="242" alt="image1" class="center">
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">Due to the instability of my wiring, I decided to solder on the wires directly to the LIS3DH while maintaining the SPI wiring setup. However, this is where I made my first error (which was only discovered towards the end of my lab section): I had soldered my ground and SCL wires together, meaning that the accelerometer would not function properly. My soldering work is shown here:</font></p>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg2.jpg" width="400" height="242" alt="image2" class="center">
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">After hooking up my non-working accelerometer (which I did not know was unfunctional at the time), I used the default code from the example provided after installing the Adafruit_LIS3DH and Adafruit Unified Sensor libraries. Here is the code used, as well as the result of my connection when the serial monitor was opened:</font></p>
+<pre><code>
+  // Basic demo for accelerometer readings from Adafruit LIS3DH
 
-  ![image of embroidery](./sew.png)
+include <Wire.h> // for all of the includes, put in a hashtag. this was removed because of the HTML formatting.
+include <SPI.h>
+include <Adafruit_LIS3DH.h>
+include <Adafruit_Sensor.h>
 
-  And here is a	[link](../index.html).
+// Used for software SPI
+define LIS3DH_CLK 13
+define LIS3DH_MISO 12
+define LIS3DH_MOSI 11
+// Used for hardware & software SPI
+define LIS3DH_CS 10 
+
+// software SPI
+//Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS, LIS3DH_MOSI, LIS3DH_MISO, LIS3DH_CLK);
+// hardware SPI
+//Adafruit_LIS3DH lis = Adafruit_LIS3DH(LIS3DH_CS);
+// I2C
+Adafruit_LIS3DH lis = Adafruit_LIS3DH();
+
+void setup(void) {
+  Serial.begin(115200);
+  while (!Serial) delay(10);     // will pause Zero, Leonardo, etc until serial console opens
+
+  Serial.println("LIS3DH test!");
+
+  if (! lis.begin(0x18)) {   // change this to 0x19 for alternative i2c address
+    Serial.println("Couldnt start");
+    while (1) yield();
+  }
+  Serial.println("LIS3DH found!");
+
+  // lis.setRange(LIS3DH_RANGE_4_G);   // 2, 4, 8 or 16 G!
+
+  Serial.print("Range = "); Serial.print(2 << lis.getRange());
+  Serial.println("G");
+
+  // lis.setDataRate(LIS3DH_DATARATE_50_HZ);
+  Serial.print("Data rate set to: ");
+  switch (lis.getDataRate()) {
+    case LIS3DH_DATARATE_1_HZ: Serial.println("1 Hz"); break;
+    case LIS3DH_DATARATE_10_HZ: Serial.println("10 Hz"); break;
+    case LIS3DH_DATARATE_25_HZ: Serial.println("25 Hz"); break;
+    case LIS3DH_DATARATE_50_HZ: Serial.println("50 Hz"); break;
+    case LIS3DH_DATARATE_100_HZ: Serial.println("100 Hz"); break;
+    case LIS3DH_DATARATE_200_HZ: Serial.println("200 Hz"); break;
+    case LIS3DH_DATARATE_400_HZ: Serial.println("400 Hz"); break;
+
+    case LIS3DH_DATARATE_POWERDOWN: Serial.println("Powered Down"); break;
+    case LIS3DH_DATARATE_LOWPOWER_5KHZ: Serial.println("5 Khz Low Power"); break;
+    case LIS3DH_DATARATE_LOWPOWER_1K6HZ: Serial.println("16 Khz Low Power"); break;
+  }
+}
+
+void loop() {
+  lis.read();      // get X Y and Z data at once
+  // Then print out the raw data
+  Serial.print("X:  "); Serial.print(lis.x);
+  Serial.print("  \tY:  "); Serial.print(lis.y);
+  Serial.print("  \tZ:  "); Serial.print(lis.z);
+
+  /* Or....get a new sensor event, normalized */
+  sensors_event_t event;
+  lis.getEvent(&event);
+
+  /* Display the results (acceleration is measured in m/s^2) */
+  Serial.print("\t\tX: "); Serial.print(event.acceleration.x);
+  Serial.print(" \tY: "); Serial.print(event.acceleration.y);
+  Serial.print(" \tZ: "); Serial.print(event.acceleration.z);
+  Serial.println(" m/s^2 ");
+
+  Serial.println();
+
+  delay(200);
+}
+</pre></code>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg3.jpg" width="400" height="242" alt="image3" class="center">
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">After finding that my accelerometer was nonfunctional, I was given permission to start again on another accelerometer. This time, I attempted to solder on a set of pins which I could then connect to my microcontroller by using a pin-socket wire. However, I learned one very valuable thing through soldering: Make sure to leave enough room between the wires. This time, I unfortunately fried my secondary microcontroller by connecting both the ground and the power together, leading to it not turning on when I hooked it up to my microcontroller. Furthermore, the pins that were sticking out were too shallow to connect to the pin-socket wires properly. One other valuable thing that I learned was that I could have simply soldered from the bottom of the accelerometer rather than from the top, which was too cluttered to solder properly without messing up the wires. Here are two images of my second accelerometer which was sadly sacrificed:</font></p>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg4.jpg" width="400" height="242" alt="image4" class="center">
+<br>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg5.jpg" width="400" height="242" alt="image5" class="center">
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">As I realized my second mistake, I had already run out of time in the lab. However, I had already created my own sensor using not only Velostat, but also two pieces of copper tape that changed reading whenever they got closer to each other and touched. I began my work on the Velostat sensor during last Thursday's class, however my documentation was done starting today (July 11th). First, I connected 5V to the breadboard using a wire, whilst I connected the ground to an EZ Hook. Afterwards, I put a 10 megaohm resister on the board between the 5V and connected a wire from the end of this resistor to the A0 socket on my microcontroller. This was done in order to provide an analog reading for the Velostat. In order to provide the positive side for the Velostat, I connected an EZ Hook to the end of the resistor. Afterwards, both of the EZ Hooks would clamp to either side of the Velostat. Here is a photo of my circuit (without the Velostat attached to the EZ Hooks):</font></p>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg6.jpg" width="400" height="242" alt="image6" class="center">
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">In order to calibrate this Velostat sensor, I used the AnalogReadSerial code off of Arduino's tutorial webpage. I modified it towards the bottom in order to calibrate it, as I included a simple setting to turn on and off the LED on my microcontroller whenever the Velostat was pressed or flexed. Here is the code, and here is a video of it working:</font></p>
+<pre><code>
+  void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  // read the input on analog pin 0:
+  int sensorValue = analogRead(A0);
+  // print out the value you read:
+  Serial.println(sensorValue);
+  delay(1);        // delay in between reads for stability
+  if (sensorValue < 670){     // this determines the serial reading needed to turn the LED on and off
+    digitalWrite(LED_BUILTIN, LOW);
+    }
+  else{
+    digitalWrite(LED_BUILTIN, HIGH);
+  }
+}
+</pre></code>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<center>
+<video width="400" height="242" controls>
+  <source src="./vid1.mp4" width="400" height="242" alt="velostatflex" class="center" type="video/mp4">
+</center>
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">Afterwards, I realized that I could simply make a copper tape sensor by placing one piece of copper tape on the EZ Hook that was connected to ground, and another on the EZ Hook that was connected to the 5V. I changed my code and swapped the <code>LED_BUILTIN, LOW</code> to <code>LED_BUILTIN, HIGH</code> and vice versa. I also changed my sensorValue to less than 1023 in order to activate the LED, as this was the constant value reported by the Serial Monitor. Here is a video of it working:</font></p>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+ <center>
+<video width="400" height="242" controls>
+  <source src="./vid2.mp4" width="400" height="242" alt="coppertapesensor" class="center" type="video/mp4">
+</center>
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">Once again, many apologies when it comes to the first half of this assignment. I know now that I should always evaluate the most practical way to accomplish a task whilst still keeping it possible, as I was too eager in my soldering when I worked on the accelerometer. Had it worked, I would have done a similar program in order to calibrate it, as I wanted to make two LEDs (one that turned on when the X value changed to a certain number, and one when the Y value changed to a certain number). I would have put these LEDs on the breadboard and wired them up using a connection from my accelerometer to the breadboard. My code would most likely have been similar to my Velostat/Copper tape code, but it would have the appropriate X and Y values. Thank you for your understanding. </font></p>
+<br>
+<p style="color:rgb(48, 48,  255)"><font size="+2">To end things on a simpler note, I have made a rudimentary table of the high and low values for my two sensor types. While there are only two values per each sensor, I think that it is worth noting that the copper tape decreases whilst the velostat increases whenever the sensors are being activated. This means that the LED setup had to be swapped in order to make the LED shine whenever the sensors touched. Here is an image of the table: </font></p>
+<br>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./png1.png" width="400" height="242" alt="image7" class="center">
+<br>
+<p style="color:black">Return to Main Page <b>[here](../index.html)<b></p> 
+<br>
+ 
 
 
 
