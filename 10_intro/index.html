@@ -12,16 +12,171 @@
 
 
 
-  ### Week 10: W.I.P
+  ### Week 10: End Effectors and Machine Building
+  <br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">For this week's assignment, we had to create a machine and make sure that it was calibrated. To do this, I decided to begin my work on my final project by creating a "proof-of-concept" for my main final project component: the leg for my wheechair. First, I started by creating a sketch of an earlier design I had for the linear rail, as well as the leg that would go inside of the rail. I started with the sketch of my leg and rail and then extruded the two. Afterwards, I made my first mistake by not shrinking the rail's size so that it could fit properly in the rail. For this design, I also included a cutout in the side which was intended to be the section where a small piece of timing belt was going to be mounted, however, this did not come through in the end. Here are my models.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./png1.png" width="400" height="242" alt="image1" class="center">
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./png2.png" width="400" height="242" alt="image2" class="center">
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./png3.png" width="400" height="242" alt="image3" class="center">
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./png4.png" width="400" height="242" alt="image4" class="center">
+<br>
+  <p style="color:rgb(48, 48,  255)"><font size="+2">Afterwards, I put my STL file into PrusaSlicer and added the supports that were needed to make the rail.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./png5.png" width="400" height="242" alt="image5" class="center">
+ <br>
+  <p style="color:rgb(48, 48,  255)"><font size="+2">Here is my result after the print, as I realized that the leg was too wide in order to fit into the linear railing.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg1.jpg" width="400" height="242" alt="image6" class="center">
+    <p style="color:rgb(48, 48,  255)"><font size="+2">As a result, I shrunk down the leg to about 90-95% of its original scale, thus allowing it to fit inside the rail after printing. Here is my changed rail, and it is not stuck inside the railing unlike my previous version.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg2.jpg" width="400" height="242" alt="image7" class="center">
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After my successful print, I decided to make a mount that my rail could be glued to in order to have the stepper motor connect to the timing belt properly. The following images show a piece of laser cut cardboard, as well as my adjustment to the cardboard in order to ensure contact with the timing belt (hot glued to the bottom of the leg) and the stepper motor.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg3.jpg" width="400" height="242" alt="image8" class="center">
+<br>
+ <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg4.jpg" width="400" height="242" alt="image9" class="center">
+  <br>
+   <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg5.jpg" width="400" height="242" alt="image10" class="center">
+  <br>
+  <p style="color:rgb(48, 48,  255)"><font size="+2">Finally, my last step was to program the motor to work properly. At first, I wanted to use the ESP32 in order to control the stepper wirelessly, but this only ended in frustration as well as the realization that I would have to stick to the Arduino Uno. I also noticed that I needed a battery pack, which I acquired. Here is an image of my wiring, and I also have included my SUCCESSFUL code as well as a working video of my machine (when hooked up to the Arduino) [Some code also provided by https://www.tutorialspoint.com/arduino/arduino_stepper_motor.htm#]:</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg6.jpg" width="400" height="242" alt="image11" class="center">
+  <br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg7.jpg" width="400" height="242" alt="image12" class="center">
+  <br>
+  <pre><code>
+    #include <Stepper.h> //include Stepper.h library
+const int stepPin = 13;
+const int dirPin = 12;
+const int stepsPerRevolution = 200;
+Stepper myStepper(stepsPerRevolution, 12, 13);
+void setup() {
+  myStepper.setSpeed(10);
+  myStepper.step(1.5*stepsPerRevolution); //This is to calibrate my machine and bring it back to the start
 
-  Here is an image: 
+}
 
-  ![image of embroidery](./sew.png)
-
-  And here is a	[link](../index.html).
-
-
-
+void loop() {
+ myStepper.step(-stepsPerRevolution); //Front motion
+ delay(5000);
+ myStepper.step(stepsPerRevolution); //Reverse motion
+ delay(5000);
+}
+</pre></code>
+   <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<center>
+<video width="400" height="242" controls>
+  <source src="./vid2.mp4" width="800" height="484" alt="motorworking" class="center" type="video/mp4">
+</center>
+  <p style="color:black">Return to Main Page <b>[here](../index.html)<b></p> 
+<br>
 </xmp>
 </body>
 
