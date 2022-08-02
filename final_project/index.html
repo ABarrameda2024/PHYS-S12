@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>Alex Barrameda - PHYS S-12: Intro to Digital Fabrication </title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+
+<body>
+
+
+<xmp theme="journal" style="display:none;">
+
+
+
+  ## Final Project: The Lifting Wheelchair
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">My name is Alexander Barrameda, and here is my final project! Due to the medical background of my family, I have seen firsthand the dangers of making someone stand from their wheelchair in order to get into bed (in the case of Assisted Living/Hospitals). As a result, I wanted to create an easy solution to this problem: a lifting wheelchair. After doing some research, I found that normal lifting chairs were incredibly expensive, with some units being in the five figure range. Therefore, I used the Digital Fabrication process in order to create a solution to this problem. Here is a video demonstration of my project, as well as some accompanying photos of the finished result.</font></p>
+ <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<center>
+<video width="2560" height="1440" controls>
+  <source src="./vid3.mp4" width="800" height="484" alt="WheelchairWorking" class="center" type="video/mp4">
+</center>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg24.jpg" width="400" height="242" alt="image1" class="center">
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg25.jpg" width="400" height="242" alt="image2" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">Here's how my Lifting Wheelchair came to be. First, I started by making a notebook sketch of the mechanism that would lift up my model "wheelchair". After making the sketch, I used Microsoft Paint in order to make a rudimentary visualization of where the mechanism would go. From here on, this mechanism will be called the "legs" of my wheelchair, and the "leg" would be inserted into a custom-made "rail" system. Here is the sketch and the visualization:</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./projectsketchjpg.JPG" width="400" height="242" alt="image3" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./wheelchairsketchpng.png" width="400" height="242" alt="image4" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After making my sketch and visualization, I started my final project by gathering the parts that I believed I would need. My original plan was to have four legs around the wheelchair (two on each side), and for this reason, I equipped myself with four stepper motors, four A4988 drivers, as well as a few protoboards. In hindsight, I overestimated the amount of time that I had, and I was forced to scale back to not only a breadboard rather than a protoboard, but I also had to use only two legs rather than four due to the print times. After gathering my supplies, I made a quick DXF file for the model wheelchair itself. Unfortunately, my computer blue-screened immediately after I exported my DXF, and I was unable to find the file afterwards. I included an image of my laser cut, which should also have the dimensions in the image itself. The parts are rather simple from a geometric standpoint, and holes were put into some of the pieces in order to fit metal rods through them. Here are the images of my materials as well as my laser cutting file for my model wheelchair (made out of acryllic):</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg1.jpg" width="400" height="242" alt="image5" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg2.jpg" width="400" height="242" alt="image6" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">When my laser cuts were complete, I saw that some of the parts were not sized correctly as the laser cutting machine had cut too low. As a result, I re-cut some of the same shapes on a different sheet of acryllic and assembled my wheelchair: </font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg5.jpg" width="400" height="242" alt="image7" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg6.jpg" width="400" height="242" alt="image8" class="center">
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg7.jpg" width="400" height="242" alt="image9" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg8.jpg" width="400" height="242" alt="image10" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After laser cutting the parts of the wheelchair, I began my 3D printing process. For my 3D prints, I created a modified version of a rail and leg that I had already created in a previous assignment, as I scaled up the leg and rail dramatically. Afterwards, I started printing two more legs (because, at the time, I had believed that I was going to make all four) and realized that I would not have enough print time to make all four legs. After verifying that my first rail design worked, I checked my second print (which printed two rails at once) and used those, as they were the same color and had less supports, making it easier for me to work with the rails.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg3.jpg" width="400" height="242" alt="image11" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg9.jpg" width="400" height="242" alt="image12" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After the 3D printing process, I glued two of the 3D printed squares onto the inside-portion of the rail, whilst also gluing a section of timing belt to these squares so that my stepper motors could move the rails back and forth. It's hard to explain through text, so the images should clarify any confusion. Afterwards, I also used hot glue and epoxy resin in order to stick my rail to my motor (so that the motors could move the legs up and down), and this was rather time consuming. Here are my results: </font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg11.jpg" width="400" height="242" alt="image13" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg13.jpg" width="400" height="242" alt="image14" class="center">
+<br>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg14.jpg" width="400" height="242" alt="image15" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After the stepper motors were attached to the rails, I had to find a way to mount the entire rail and leg "unit" to each side of my wheelchair. In order to not further disrupt the 3D printing queue with long print times, I instead decided to make rectangles out of cardboard that my motors could sit on, as shown in the images below. During this process, my two front wheels also snapped off, so I had to re-structure the front of the wheelchair so that it would be more stable.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg12.jpg" width="400" height="242" alt="image16" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg17.jpg" width="400" height="242" alt="image17" class="center">
+<br>
+ <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg16.jpg" width="400" height="242" alt="image18" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After successfully mounting the rails to the side of the wheelchair, I had to sort out my coding and wiring for my stepper motors. For my power supply for the two DC motors, I decided to use a 9V power supply and stripped the wires in order to expose the ground and power. After soldering extra wire to the ground and power and adding a heatshrink, my external power was ready for my stepper motors. After a previous failure with my wiring of four stepper motors (image shown below, the ground and power were swapped and thankfully nothing was fried), I re-wired my stepper motors (now two rather than four) and tested them while they were mounted. The tests looked promising, but the legs were not long enough to reach the ground.</font></p>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg4.jpg" width="400" height="242" alt="image19" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg20.jpg" width="400" height="242" alt="image20" class="center">
+<br>
+<style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<center>
+<video width="2560" height="1440" controls>
+  <source src="./vid2.mp4" width="800" height="484" alt="WheelchairTesting" class="center" type="video/mp4">
+</center>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After testing my motors with some sample stepper motor code, I created a code that corresponded to a button input. Here is my rather simple yet effective code, and some wiring images:</font></p>
+   <pre><code>
+    #include <Stepper.h>
+const int stepPin = 10;
+const int dirPin = 13;
+const int stepsPerRevolution = 200;
+const int buttonPin = 12;
+int buttonState = 0;
+Stepper myStepper(stepsPerRevolution, 10, 13);
+void setup() {
+   pinMode(buttonPin, INPUT_PULLUP);
+  myStepper.setSpeed(100);
+  myStepper.step(1.5*stepsPerRevolution); //This is to calibrate my machine and bring it back to the start
+Serial.begin(9600);
+
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin);
+  Serial.println(buttonState);
+  
+    if (buttonState == HIGH) {
+      myStepper.step(-stepsPerRevolution); //Front motion
+      delay(1000);
+  } else {
+    myStepper.step(stepsPerRevolution); //Reverse motion
+    delay(1000);
+  }
+}
+</pre></code>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg22.jpg" width="400" height="242" alt="image21" class="center">
+<br>
+<br>
+  <style>
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+  <img src="./jpg24.jpg" width="400" height="242" alt="image22" class="center">
+<br>
+   <p style="color:rgb(48, 48,  255)"><font size="+2">After my code was made, my final project was completed! Thank you to the Professor as well as the TAs for the support during this journey, it's been incredibly fun! Here are my STL files for my rails:
+    <a href="./Alex Barrameda - Final Project - One Rail 60% Size.stl">STL File for One Rail.</a>
+    <a href="./ALEX BARRAMEDA - FINAL PROJECT - TWO PRINTWORTHY RAILS and FOUR SQUARES">STL File for Two Rails.</a></font></p>
+
+
+  <p style="color:black">Return to Main Page <b>[here](../index.html)<b></p> 
+<br>
+
+
+
+
+</xmp>
+</body>
+
+<script src="https://strapdownjs.com/v/0.2/strapdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+
+</html>
